@@ -1,30 +1,17 @@
-> **Note**: This branch (master) contains a skeleton without any app code, perfect for creating a _new_ application or challenge. If you're looking for an example app built with this skeleton, take a look at the [example](/../..//tree/example) branch which includes basic CRUD and RSpec tests.
+#### Magic 8-ball
 
 ### Purpose
-The Sinatra Skeleton:
 
-1. Provides a foundation for building challenges or creating a new Sinatra application.
-2. Demonstrates a reasonable set of practices around building Sinatra applications.
-3. Eases the transition to Rails for Dev Bootcamp students
+Web app simulating the functionality of [Magic 8 Ball™](https://en.wikipedia.org/wiki/Magic_8-Ball "Wikipedia"). Built on Sinatra Skeleton.
 
-### Quickstart
+1. As a user, I'd like to shake the ball and be told a random deafult set of answers for my question.
+2. As a user, aside from the default set, I'd like to be able to create, edit or delete my own custom predictions.
+3. As a user, I'd like to create separate customized 8-Balls.
+3. As a developer, I wish to be able to secure and protect the user's personal credentials.
+4. As an ISP, I'd like for the developer to use AJAX calls to minimize the number of requests made per game.
 
-1.  `bundle install`
-2.  `shotgun config.ru`
+########################################################
 
-As needed, create models & migrations with the `rake` tasks:
+ Schema:
 
-```
-rake generate:migration  # Create an empty migration in db/migrate, e.g., rake generate:migration NAME=create_tasks
-rake generate:model      # Create an empty model in app/models, e.g., rake generate:model NAME=User
-```
-
-### Contributing
-
-We would love for you to help make the skeleton more awesome, There are three ways to contribute:
-
-1. Ask for a bug fix or enhancement!
-2. Submit a pull request for a bug fix or enhancement!
-3. Code review an open pull request!
-
-Be prepared to give and receive specific, actionable, and kind feedback!
+![alt text](schema.png "Scema")
