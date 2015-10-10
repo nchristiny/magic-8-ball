@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :balls
 
-  validates :username, precence: true, uniqueness: true
-  validates :email, precence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
   validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates :hashed_password, length: { minimum: 6 }
 
