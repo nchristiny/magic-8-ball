@@ -1,12 +1,6 @@
 require 'faker'
 
-10.times do |x|
-  User.create(name: Faker::Internet.user_name, email: Faker::Internet.email, hashed_password: Faker::Internet.password)
-end
-
-Ball.create(name: "Default")
-
-["It is certain",
+DEFAULT_ANSWERS = ["It is certain",
   "It is decidedly so",
 "Without a doubt",
 "Yes, definitely",
@@ -25,8 +19,16 @@ Ball.create(name: "Default")
 "My reply is no",
 "My sources say no",
 "Outlook not so good",
-"Very doubtful"].each do |answer|
-  Answer.create(body: answer)
+"Very doubtful"]
+
+default_user = User.create(username: "Jane Doe", email: "fake@safe_email.com", hashed_password: "fake1234")
+
+5.times do |x|
+  User.create(username: Faker::Internet.user_name, email: Faker::Internet.email, hashed_password: Faker::Internet.password)
 end
 
+Ball.create(name: "Default", user_id: 1)
 
+DEFAULT_ANSWERS.each do |answers|
+  Answer.create(body: answers, user_id: 1, ball_id: 1)
+end
