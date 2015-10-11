@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Magic 8 Ball Simulator</h1>
+  <h2>Log in</h2>
+  <p><a href="/balls">Browse available Magic 8 Balls.</a></p>
+
+  <form action="/users/login" method="post">
+    <fieldset>
+      <legend>Log In</legend>
+      <% @user.try(:errors).try(:full_messages).each do |msg|  %>
+        <p><%= msg %></p>
+      <% end %>
+      <label for="email">Email:</label>
+      <input type="email" name="user[email]" value=<%= @user.try(:email) %>>
+      <br />
+      <label for="password">Password:</label>
+      <input type="password" name="user[password]">
+      <input type="submit" value="Log In">
+    </fieldset>
+  </form>
+
+    <h2>New user? <a href="/users/new">Sign up here.</a></h2>
+
+</div>

@@ -11,10 +11,7 @@
 </head>
 <body>
   <% if current_user %>
-    <form action="/logout" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input id="logout-button" type="submit" value="log out">
-    </form>
+
   <% end %>
   <%= yield %>
 </body>

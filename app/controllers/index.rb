@@ -1,5 +1,5 @@
 enable :sessions
 
 get '/' do
-  erb :index
+  redirect "/balls"
 end
