@@ -2,5 +2,5 @@
   <h1>Magic 8 Ball Simulator</h1>
   <h2>Current Ball:</h2>
   <h3><%= @ball.name %></h3>
-  <p>Created by: <a href="#"><%= @user.username %></a> on <%= @ball.created_at.strftime("%B %d, %Y") %></p>
+  <p>Created by: <a href="/users/<%= @user.id %>"><%= @user.username %></a> on <%= @ball.created_at.strftime("%B %d, %Y") %></p>
 </div>

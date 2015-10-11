@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Magic 8 Ball Simulator</h1>
+  <h2>User Profile</h2>
+  <h3><%= @user.username %></h3>
+  <h3>List of Magic 8 Balls created by this user:</h3>
+    <ul>
+    <% if @balls %>
+      <% @balls.each do |ball| %>
+    <li><a href="/balls/<%= ball.id %>"><%= ball.name %></a> - Created on <%= ball.created_at.strftime("%B %d, %Y") %></li>
+      <% end %>
+    <% else %>
+      <%= puts "No Magic 8 Balls created by this user."  %>
+    <% end %>
+  </ul>
+
+</div>

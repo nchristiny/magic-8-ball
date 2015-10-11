@@ -4,6 +4,12 @@ get '/users/new' do
     erb :signup
 end
 
+get '/users/:user_id' do
+  @user = User.find(params[:user_id])
+  @balls = User.find(params[:user_id]).balls
+  erb :"users/show"
+end
+
 post '/users' do
   @user = User.new(params[:user])
   if @user.save
