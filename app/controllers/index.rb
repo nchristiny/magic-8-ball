@@ -1,4 +1,5 @@
+enable :sessions
+
 get '/' do
-  @balls = Ball.all
-  erb :"balls/index"
+  erb :index
 end
