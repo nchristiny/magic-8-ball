@@ -6,8 +6,10 @@
   <form action="/users/login" method="post">
     <fieldset>
       <legend>Log In</legend>
-      <% @user.try(:errors).try(:full_messages).each do |msg|  %>
-        <p><%= msg %></p>
+      <% if @user %>
+        <% @user.try(:errors).try(:full_messages).each do |msg|  %>
+          <p><%= msg %></p>
+        <% end %>
       <% end %>
       <label for="email">Email:</label>
       <input type="email" name="user[email]" value=<%= @user.try(:email) %>>

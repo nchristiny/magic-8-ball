@@ -29,13 +29,13 @@ post '/users/login' do
   end
 end
 
+get '/users/logout' do
+  session[:user_id] = nil
+  redirect '/'
+end
+
 get '/users/:user_id' do
   @user = User.find(params[:user_id])
   @balls = @user.balls
   erb :"users/show"
-end
-
-delete '/logout' do
-  session[:user_id] = nil
-  redirect '/'
 end

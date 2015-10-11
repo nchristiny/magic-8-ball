@@ -8,6 +8,20 @@
 }
 
 img {
-  margin: 0px auto;
+  margin: 0 auto;
   width: 100%;
+}
+
+.left {
+  float: left;
+}
+
+.pipe-separate {
+  padding-left: 1em;
+  padding-right: 1em;
+  border-right: 1px solid;
+}
+
+ul li {
+  list-style-type: none;
 }
