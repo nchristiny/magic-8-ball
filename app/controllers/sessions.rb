@@ -31,7 +31,7 @@ end
 
 get '/users/:user_id' do
   @user = User.find(params[:user_id])
-  @balls = User.find(params[:user_id]).balls
+  @balls = @user.balls
   erb :"users/show"
 end
 
