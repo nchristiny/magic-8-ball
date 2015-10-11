@@ -3,6 +3,14 @@ get '/balls' do
   erb :'/balls/index'
 end
 
+get '/balls/:id/result' do
+  @ball = Ball.find(params[:id])
+  user_id = @ball.user_id
+  @user = User.find(user_id)
+
+  erb :"balls/result"
+end
+
 get '/balls/:id' do
   @ball = Ball.find(params[:id])
   user_id = @ball.user_id
