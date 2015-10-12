@@ -1,17 +1,14 @@
-<div class="container">
-  <h1>Magic 8 Ball Simulator</h1>
-  <h2>User Profile</h2>
-  <h3>Username: <%= @user.username %></h3>
-  <h3>Magic 8 Balls created:</h3>
-    <ul>
-    <% if @balls %>
-      <% @balls.each do |ball| %>
-    <li><a href="/balls/<%= ball.id %>"><%= ball.name %></a> - Created on <%= ball.created_at.strftime("%B %d, %Y") %></li>
-      <% end %>
-    <% else %>
-      <%= puts "No Magic 8 Ball created yet by this user." %>
+<h1>Magic 8 Ball Simulator</h1>
+<h2>User Profile</h2>
+<h3>Username: <%= @user.username %></h3>
+<h3>Magic 8 Balls created:</h3>
+  <ul>
+  <% if @balls %>
+    <% @balls.each do |ball| %>
+  <li><a href="/balls/<%= ball.id %>"><%= ball.name %></a> - Created on <%= ball.created_at.strftime("%B %d, %Y") %></li>
     <% end %>
-  </ul>
-  <p><a href="/balls">Back to Magic 8 Ball list</a></p>
-
-</div>
+  <% else %>
+    <li><%= puts "No Magic 8 Ball created yet by this user." %></li>
+  <% end %>
+</ul>
+<p><a href="/balls">Back to Magic 8 Ball list</a></p>

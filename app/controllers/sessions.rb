@@ -35,6 +35,7 @@ get '/users/logout' do
 end
 
 get '/users/:user_id' do
+  redirect_guests
   @user = User.find(params[:user_id])
   @balls = @user.balls
   erb :"users/show"

@@ -1,7 +1,8 @@
 require 'faker'
 
-DEFAULT_ANSWERS = ["It is certain",
-  "It is decidedly so",
+DEFAULT_ANSWERS = [
+"It is certain",
+"It is decidedly so",
 "Without a doubt",
 "Yes, definitely",
 "You may rely on it",
