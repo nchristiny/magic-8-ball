@@ -1,0 +1,19 @@
+<h1>Magic 8 Ball Simulator</h1>
+<h2>New Ball</h2>
+<% if @errors %>
+  <span>Something went wrong:</span>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+<form action="/balls/new" method="post">
+  <fieldset>
+    <legend>New Ball Form</legend>
+    <label for="name">Name:</label>
+    <input type="text" name="ball[name]" value=<%= @ball.try(:name) %>>
+    <br />
+    <input type="submit" value="Create">
+  </fieldset>
+</form>
