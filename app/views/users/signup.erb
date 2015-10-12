@@ -5,7 +5,8 @@
 <form action="/users/new" method="post">
   <fieldset>
     <legend>Sign Up</legend>
-    <% @user.try(:errors).try(:full_messages).each do |msg|  %>
+    <!-- I like the below #try calls a lot, but didn't you also create an instance var '@errors' in the controller, using the same method call? I'd either use that var explicitly or use the #trys on @user, but not both. -->
+    <% @user.try(:errors).try(:full_messages).each do |msg|  %> 
       <p><%= msg %></p>
     <% end %>
     <label for="username">Username:</label>
