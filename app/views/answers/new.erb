@@ -1,0 +1,20 @@
+<h1>Magic 8 Ball Simulator</h1>
+<h2>Add Answer</h2>
+<% if @errors %>
+  <span>Something went wrong:</span>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/balls/<%= @ball.id %>/answers/new" method="post">
+  <fieldset>
+    <legend>New Answer Form</legend>
+    <label for="name">Text:</label>
+    <input type="text" name="answer[body]" value=<%= @answer.try(:body) %>>
+    <br />
+    <input type="submit" value="Add Answer">
+  </fieldset>
+</form>

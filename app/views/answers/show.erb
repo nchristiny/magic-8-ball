@@ -1,0 +1,11 @@
+<h1>Magic 8 Ball Simulator</h1>
+<h2>Answers for Ball: <%= @ball.name %></h2>
+
+<ul>
+  <% @answers.each do |answer| %>
+  <li><%= answer.body %><a href="/balls/<%= @ball.id %>/answers/<%= answer.id %>/edit">Edit</a></li>
+  <% end %>
+</ul>
+
+<p><a href="/balls/<%= @ball.id %>/answers/new">Add a new Answer</a></p>
+<p><a href="/balls/<%= @ball.id %>">Back to Ball</a></p>
