@@ -1,9 +1,7 @@
-<div class="container">
-  <h1>Magic 8 Ball Simulator</h1>
-  <h2>Available 8 Balls:</h2>
-  <ul>
-    <% @balls.each do |ball| %>
-    <li><a href="balls/<%= ball.id %>"><%= ball.name %></a></li>
-    <% end %>
-  </ul>
-</div>
+<h1>Magic 8 Ball Simulator</h1>
+<h2>Available 8 Balls:</h2>
+<ul>
+  <% @balls.each do |ball| %>
+  <li><a href="balls/<%= ball.id %>"><%= ball.name %></a></li>
+  <% end %>
+</ul>

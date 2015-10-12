@@ -1,38 +1,42 @@
 get '/users/new' do
   @user = User.new
-
-    erb :signup
+    erb :"/users/signup"
 end
 
-get '/users/:user_id' do
-  @user = User.find(params[:user_id])
-  @balls = User.find(params[:user_id]).balls
-  erb :"users/show"
-end
-
-post '/users' do
+post '/users/new' do
   @user = User.new(params[:user])
   if @user.save
     session[:user_id] = @user.id
     redirect '/balls'
   else
     @errors = @user.errors.full_messages
-    erb :signup
+    erb :"users/signup"
   end
 end
 
-post '/login' do
+get '/users/login' do
+  erb :"users/login"
+end
+
+post '/users/login' do
   @user = User.find_by(email: params[:user][:email])
   if User.authenticate(params[:user])
     session[:user_id] = @user.id
     redirect '/balls'
   else
     @error = "Invalid credentials. Please try again."
-    erb :index
+    erb :"users/login"
   end
 end
 
-delete '/logout' do
+get '/users/logout' do
   session[:user_id] = nil
   redirect '/'
+end
+
+get '/users/:user_id' do
+  redirect '/' unless User.find(params[:user_id]) == current_user
+  @user = User.find(params[:user_id])
+  @balls = @user.balls
+  erb :"users/show"
 end
