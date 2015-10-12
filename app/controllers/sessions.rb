@@ -35,7 +35,7 @@ get '/users/logout' do
 end
 
 get '/users/:user_id' do
-  redirect_guests
+  redirect '/' unless User.find(params[:user_id]) == current_user
   @user = User.find(params[:user_id])
   @balls = @user.balls
   erb :"users/show"
