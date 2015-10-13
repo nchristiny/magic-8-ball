@@ -42,7 +42,7 @@ put '/balls/:id/answers/:answer_id' do
     redirect "/balls/#{@ball.id}/answers"
   else
     # I smell some hot and savory copypasta! What the heck is an @entry, anyhow? ;)
-    # Always manually re-type a resource you're reusing in a new context, since it'll help you think through what you're adding 
+    # Always manually re-type a resource you're reusing in a new context, since it'll help you think through what you're adding
     @errors = @entry.errors.full_messages
     # If the put was unsuccessful, you'll want to rerender answers/edit here instead of redirecting. The @ball object hasn't hit the db in your else case, so any changes to it would be lost in a new route. Stay here and make sure they can see the offending strings they wrote in the fields that need changing.
     redirect "balls/#{@ball.id}/answers/edit"
