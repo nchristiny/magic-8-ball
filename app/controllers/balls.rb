@@ -9,8 +9,7 @@ get '/balls/new' do
   erb :"/balls/new"
 end
 
-# Use "post '/balls'" instead. (Newness is already implied for any object's POST controller action.)
-post '/balls/new' do
+post '/balls' do
   @user = current_user
   @ball = @user.balls.new(params[:ball])
   if @ball.save
@@ -51,7 +50,7 @@ put '/balls/:id' do
   if @ball.save
     redirect "balls/#{@ball.id}"
   else
-    @errors = @entry.errors.full_messages
+    @errors = @ball.errors.full_messages
     erb :"balls/:id/edit"
   end
 end

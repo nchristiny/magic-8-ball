@@ -4,7 +4,7 @@
 <h3>Magic 8 Balls created:</h3>
   <ul>
     <% @balls.each do |ball| %>
-  <li><a href="/balls/<%= ball.id %>"><%= ball.name %></a> - Created on <%= ball.created_at.strftime("%B %d, %Y") %>. <a href="/balls/<%= ball.id %>/edit">Edit</a></li>
+  <li><a href="/balls/<%= ball.id %>"><%= ball.name %></a> | Created on <%= ball.created_at.strftime("%B %d, %Y") %>. <a href="/balls/<%= ball.id %>/edit">Edit</a></li>
     <% end %>
 </ul>
 <p><a href="/balls/new">Make a new Magic 8 Ball</a></p>

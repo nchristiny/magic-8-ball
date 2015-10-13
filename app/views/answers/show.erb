@@ -3,13 +3,13 @@
 
 <ul>
   <% @answers.each do |answer| %>
-  <li><%= answer.body %><a href="/balls/<%= @ball.id %>/answers/<%= answer.id %>/edit">Edit</a></li>
+  <li><%= answer.body %> | <a href="/balls/<%= @ball.id %>/answers/<%= answer.id %>/edit">Edit</a></li>
   <% end %>
 </ul>
-<!-- What about this help for the user? -->
-<!-- <% if @answers.empty? %> -->
-<!--   <h2>This 8 Ball doesn't have any answers set for it yet...add some below!</h2> -->
-<!-- <% end %> -->
+
+<% if @answers.empty? %>
+  <h2>This Magic 8 Ball doesn't have any answers set for it yet...add some below!</h2>
+<% end %>
 
 <p><a href="/balls/<%= @ball.id %>/answers/new">Add a new Answer</a></p>
 <p><a href="/balls/<%= @ball.id %>">Back to Ball</a></p>
