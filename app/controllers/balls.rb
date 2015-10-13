@@ -24,7 +24,6 @@ get '/balls/:id/result' do
   @ball = Ball.find(params[:id])
   user_id = @ball.user_id
   @author = User.find(user_id)
-  # I'm not sure what this if/else is doing...handling a case where a ball was created without any answers? Maybe that could be a validation on the Ball model. Also, I'm pretty sure the route you're redirecting to doesn't exist yet.
   if @ball.answers.count == 0
     redirect "balls/#{@ball.id}/answers"
   else
@@ -45,13 +44,12 @@ end
 
 put '/balls/:id' do
   @ball = Ball.find(params[:id])
-  # Is there any difference between #assign_attributes and #update_attributes? Look it up and find out!
-  @ball.assign_attributes(params[:ball])
+  @ball.update_attributes(params[:ball])
   if @ball.save
     redirect "balls/#{@ball.id}"
   else
     @errors = @ball.errors.full_messages
-    erb :"balls/:id/edit"
+    erb :"balls/edit"
   end
 end
 
@@ -64,7 +62,10 @@ get '/balls/:id/edit' do
 end
 
 delete '/balls/:id' do
-  redirect_guests
+  @ball = Ball.find(params[:id])
+  user_id = @ball.user_id
+  @author = User.find(user_id)
+  redirect '/' unless @author == current_user
   ball = Ball.find(params[:id])
   ball.destroy
   redirect '/balls'
