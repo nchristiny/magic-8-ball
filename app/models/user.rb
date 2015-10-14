@@ -2,10 +2,9 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   has_many :answers
-  has_many :balls, foreign_key: :author_id
+  has_many :balls
 
-  validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
+  validates :username, :email, { presence: true, uniqueness: true }
   validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validate  :password_required
 
