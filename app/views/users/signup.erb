@@ -2,11 +2,13 @@
 <h2>Sign up</h2>
 <p><a href="/balls">Browse available Magic 8 Balls.</a></p>
 
-<form action="/users/new" method="post">
+<form action="/users" method="post">
   <fieldset>
     <legend>Sign Up</legend>
-    <% @user.try(:errors).try(:full_messages).each do |msg|  %>
-      <p><%= msg %></p>
+    <%if @errors%>
+      <% @errors.each do |msg|  %>
+        <p><%= msg %></p>
+      <% end %>
     <% end %>
     <label for="username">Username:</label>
     <input type="text" name="user[username]" value=<%= @user.try(:username) %>>
@@ -20,4 +22,4 @@
   </fieldset>
 </form>
 
-  <h2>Existing user? <a href="/users/login">Log in here.</a></h2>
+  <h2>Existing user? <a href="/login">Log in here.</a></h2>

@@ -15,7 +15,7 @@ get '/balls/:id/answers/new' do
   erb :"answers/new"
 end
 
-post '/balls/:id/answers/new' do
+post '/balls/:id/answers' do
   @ball = Ball.find(params[:id])
   user_id = @ball.user_id
   @author = User.find(user_id)
@@ -34,14 +34,13 @@ put '/balls/:id/answers/:answer_id' do
   user_id = @ball.user_id
   @author = User.find(user_id)
   redirect '/' unless @author == current_user
-  p params
   @answer = Answer.find(params[:answer_id])
   @answer.update_attributes(body: params[:answer][:body], user_id: session[:user_id], ball_id: @ball.id)
-  if @ball.save
+  if @answer.save
     redirect "/balls/#{@ball.id}/answers"
   else
-    @errors = @entry.errors.full_messages
-    redirect "balls/#{@ball.id}/answers/edit"
+    @errors = @answer.errors.full_messages
+    erb :"answers/edit"
   end
 end
 
@@ -58,6 +57,11 @@ delete '/balls/:id/answers/:answer_id' do
   @ball = Ball.find(params[:id])
   user_id = @ball.user_id
   @author = User.find(user_id)
+  # Nice auth! I see you used it several times in this controller.
+  # What about an answers.rb file in the helpers folder, with this method?
+  # def authenticate_answer_author(answer)
+  #   redirect '/' unless answer.user == current_user
+  # end
   redirect '/' unless @author == current_user
   answer = Answer.find(params[:answer_id])
   answer.destroy

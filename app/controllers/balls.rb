@@ -9,7 +9,7 @@ get '/balls/new' do
   erb :"/balls/new"
 end
 
-post '/balls/new' do
+post '/balls' do
   @user = current_user
   @ball = @user.balls.new(params[:ball])
   if @ball.save
@@ -34,6 +34,9 @@ end
 get '/balls/:id' do
   current_user
   @ball = Ball.find(params[:id])
+  # Instead of the next two lines, you could refactor to lean on the Ball associations you wrote:
+  # @author = @ball.user
+  # This is also happening all over your answers controller, so refactor there accordingly.
   user_id = @ball.user_id
   @author = User.find(user_id)
   erb :"balls/show"
@@ -41,12 +44,12 @@ end
 
 put '/balls/:id' do
   @ball = Ball.find(params[:id])
-  @ball.assign_attributes(params[:ball])
+  @ball.update_attributes(params[:ball])
   if @ball.save
     redirect "balls/#{@ball.id}"
   else
-    @errors = @entry.errors.full_messages
-    erb :"balls/:id/edit"
+    @errors = @ball.errors.full_messages
+    erb :"balls/edit"
   end
 end
 
@@ -59,7 +62,10 @@ get '/balls/:id/edit' do
 end
 
 delete '/balls/:id' do
-  redirect_guests
+  @ball = Ball.find(params[:id])
+  user_id = @ball.user_id
+  @author = User.find(user_id)
+  redirect '/' unless @author == current_user
   ball = Ball.find(params[:id])
   ball.destroy
   redirect '/balls'

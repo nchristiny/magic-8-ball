@@ -3,7 +3,7 @@ get '/users/new' do
     erb :"/users/signup"
 end
 
-post '/users/new' do
+post '/users' do
   @user = User.new(params[:user])
   if @user.save
     session[:user_id] = @user.id
@@ -14,24 +14,27 @@ post '/users/new' do
   end
 end
 
-get '/users/login' do
-  erb :"users/login"
+get '/login' do
+  erb :"/login"
 end
 
-post '/users/login' do
+post '/login' do
   @user = User.find_by(email: params[:user][:email])
   if User.authenticate(params[:user])
     session[:user_id] = @user.id
     redirect '/balls'
   else
     @error = "Invalid credentials. Please try again."
-    erb :"users/login"
+    erb :"/login"
   end
 end
 
-get '/users/logout' do
-  session[:user_id] = nil
-  redirect '/'
+delete '/logout' do
+  if request.xhr?
+    session[:user_id] = nil
+    @current_user = nil
+    redirect '/'
+  end
 end
 
 get '/users/:id' do

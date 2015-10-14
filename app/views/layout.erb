@@ -6,7 +6,7 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
-
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   <title>Magic 8 Ball Simulator</title>
 </head>
 <body>
@@ -15,10 +15,10 @@
     <ul>
       <% if current_user %>
         <li class="pipe-separate left"><a href="/users/<%=@user.id%>"><%= @user.username %></a></li>
-        <li class="pipe-separate left"><a href = "/users/logout">Log out</a></li>
+        <li class="pipe-separate left"><a class="jquery-logout" href = "/logout">Log out</a></li>
       <% else %>
         <li class="pipe-separate left"><a href = "/users/new">Sign up</a></li>
-        <li class="pipe-separate left"><a href = "/users/login">Log in</a></li>
+        <li class="pipe-separate left"><a href = "/login">Log in</a></li>
       <% end %>
         <li class="pipe-separate left"><a href="/">Home</a></li>
       </ul>
