@@ -13,8 +13,7 @@ get '/balls/new' do
 end
 
 post '/balls' do
-  @user = current_user
-  @ball = @user.balls.new(params[:ball])
+  @ball = current_user.balls.new(params[:ball])
   if @ball.save
     redirect "/balls/#{@ball.id}"
   else
@@ -24,29 +23,26 @@ post '/balls' do
 end
 
 get '/balls/:id/result' do
-  @ball = Ball.find(params[:id])
-  user_id = @ball.author_id
-  @author = User.find(user_id)
+  find_author_ball
   if @ball.answers.count == 0
     redirect "balls/#{@ball.id}/answers"
   else
-    erb :"balls/result"
+    if request.xhr?
+      erb :"balls/_result", { layout: false, locals: { ball: @ball } }
+    else
+      erb :"balls/result"
+    end
   end
 end
 
 get '/balls/:id' do
-  # current_user
-  @ball = Ball.find(params[:id])
-  # Instead of the next two lines, you could refactor to lean on the Ball associations you wrote:
-  # @author = @ball.user
-  # This is also happening all over your answers controller, so refactor there accordingly.
-  user_id = @ball.author_id
-  @author = User.find(user_id)
+  find_author_ball
   erb :"balls/show"
 end
 
 put '/balls/:id' do
-  @ball = Ball.find(params[:id])
+  find_author_ball
+  redirect_non_author
   @ball.update_attributes(params[:ball])
   if @ball.save
     redirect "balls/#{@ball.id}"
@@ -57,18 +53,14 @@ put '/balls/:id' do
 end
 
 get '/balls/:id/edit' do
-  @ball = Ball.find(params[:id])
-  user_id = @ball.author_id
-  @author = User.find(user_id)
-  redirect '/' unless @author == current_user
+  find_author_ball
+  redirect_non_author
   erb :"balls/edit"
 end
 
 delete '/balls/:id' do
-  @ball = Ball.find(params[:id])
-  user_id = @ball.author_id
-  @author = User.find(user_id)
-  redirect '/' unless @author == current_user
+  find_author_ball
+  redirect_non_author
   ball = Ball.find(params[:id])
   ball.destroy
   redirect '/balls'

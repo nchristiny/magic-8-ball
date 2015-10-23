@@ -6,6 +6,9 @@
     <a href="/balls/<%= @ball.id %>/answers">Answers</a>
   <% end %>
 </p>
-<a href="/balls/<%= @ball.id %>/result"><img class="ball" src="/images/8ball.png"></a>
-<p>ASK A QUESTION AND CLICK THE MAGIC 8 BALL!</p>
+
+<div class="ball">
+  <a href="/balls/<%= @ball.id %>/result"><img src="/images/8ball.png"></a>
+  <p>ASK A QUESTION AND CLICK THE MAGIC 8 BALL!</p>
+</div>
 <p><a href="/balls">Back to Magic 8 Ball list</a></p>
