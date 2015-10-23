@@ -14,7 +14,7 @@
   <fieldset>
     <legend>Edit Answer Form</legend>
     <label for="name">Text:</label>
-    <input type="text" name="answer[body]" value=<%= @answer.try(:body) %>>
+    <input type="text" name="answer[body]" value="<%= @answer.try(:body) %>">
     <br />
     <input type="submit" value="Edit Answer">
   </fieldset>

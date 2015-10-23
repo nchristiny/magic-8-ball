@@ -1,6 +1,6 @@
 get '/balls/:id/answers' do
   @ball = Ball.find(params[:id])
-  user_id = @ball.user_id
+  user_id = @ball.author_id
   @author = User.find(user_id)
   redirect '/' unless @author == current_user
   @answers = @ball.answers
@@ -9,7 +9,7 @@ end
 
 get '/balls/:id/answers/new' do
   @ball = Ball.find(params[:id])
-  user_id = @ball.user_id
+  user_id = @ball.author_id
   @author = User.find(user_id)
   redirect '/' unless @author == current_user
   erb :"answers/new"
@@ -17,10 +17,10 @@ end
 
 post '/balls/:id/answers' do
   @ball = Ball.find(params[:id])
-  user_id = @ball.user_id
+  user_id = @ball.author_id
   @author = User.find(user_id)
   redirect '/' unless @author == current_user
-  @answer = Answer.new(body: params[:answer][:body], user_id: session[:user_id], ball_id: @ball.id)
+  @answer = Answer.new(body: params[:answer][:body], answerer_id: session[:user_id], ball_id: @ball.id)
    if @answer.save
     redirect "/balls/#{@ball.id}/answers"
   else
@@ -31,11 +31,11 @@ end
 
 put '/balls/:id/answers/:answer_id' do
   @ball = Ball.find(params[:id])
-  user_id = @ball.user_id
+  user_id = @ball.author_id
   @author = User.find(user_id)
   redirect '/' unless @author == current_user
   @answer = Answer.find(params[:answer_id])
-  @answer.update_attributes(body: params[:answer][:body], user_id: session[:user_id], ball_id: @ball.id)
+  @answer.update_attributes(body: params[:answer][:body], answerer_id: session[:user_id], ball_id: @ball.id)
   if @answer.save
     redirect "/balls/#{@ball.id}/answers"
   else
@@ -46,7 +46,7 @@ end
 
 get '/balls/:id/answers/:answer_id/edit' do
   @ball = Ball.find(params[:id])
-  user_id = @ball.user_id
+  user_id = @ball.author_id
   @author = User.find(user_id)
   redirect '/' unless @author == current_user
   @answer = Answer.find(params[:answer_id])
@@ -55,7 +55,7 @@ end
 
 delete '/balls/:id/answers/:answer_id' do
   @ball = Ball.find(params[:id])
-  user_id = @ball.user_id
+  user_id = @ball.author_id
   @author = User.find(user_id)
   # Nice auth! I see you used it several times in this controller.
   # What about an answers.rb file in the helpers folder, with this method?

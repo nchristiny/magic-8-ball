@@ -7,8 +7,17 @@ $(document).ready(function() {
       url: $this.attr('href')
     }).done(function (response) {
       alert('Goodbye');
-      // console.log(response);
       window.location.href = "/balls";
     });
   });
+
+  // AJAX-ify Answers
+
+  $(".ball").on("click", function (event) {
+    event.preventDefault();
+    console.log("Hello from the click answer event")
+  });
+
+
+
 });
