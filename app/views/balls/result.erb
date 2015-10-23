@@ -7,10 +7,11 @@
 <% end %>
 </p>
 <!-- Pull this out into a partial -->
-<div class="result">
   <p>MAGIC BALL SAYS:</p>
-  <p><%= @ball.answers.sample.body  %> </p>
-  <a href="/balls/<%= @ball.id %>/result"><img class="ball" src="/images/8ball_result.png"></a>
-  <p>ASK ANOTHER QUESTION AND CLICK THE MAGIC BALL!</p>
-  <p><a href="/balls">Back to Magic Ball list</a></p>
+  <p><%= @ball.answers.sample.body %> </p>
+  <p>ASK ANOTHER QUESTION AND CLICK BUTTON!</p>
+<div class="ball">
+  <a href="/balls/<%= @ball.id %>/result"><input id="answer" type="submit" value="ANSWER ME!" ></a>
 </div>
+<img src="/images/8ball_result.png">
+<p><a href="/balls">Back to Magic Ball list</a></p>

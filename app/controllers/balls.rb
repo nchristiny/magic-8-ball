@@ -37,7 +37,13 @@ end
 
 get '/balls/:id' do
   find_author_ball
-  erb :"balls/show"
+  if @ball.answers.count == 0
+    redirect "balls/#{@ball.id}/answers"
+  elsif request.xhr?
+    erb :"balls/_result", { layout: false, locals: { ball: @ball } }
+  else
+    erb :"balls/show"
+  end
 end
 
 put '/balls/:id' do
