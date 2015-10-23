@@ -1,11 +1,15 @@
-<h1>Magic 8 Ball Simulator</h1>
+<h1>Magic Ball Simulator</h1>
 <h2>Ball: <%= @ball.name %></h2>
-<p>Created by: <a href="/users/<%= @ball.user_id %>"><%= @author.username %></a> on <%= @ball.created_at.strftime("%B %d, %Y") %>
+<p>Created by: <a href="/users/<%= @ball.author_id %>"><%= @author.username %></a> on <%= @ball.created_at.strftime("%B %d, %Y") %>
   <% if current_user == @author %>
     <a href="/balls/<%= @ball.id %>/edit">Edit</a>
     <a href="/balls/<%= @ball.id %>/answers">Answers</a>
   <% end %>
 </p>
-<a href="/balls/<%= @ball.id %>/result"><img src="/images/8ball.png"></a>
-<p>ASK A QUESTION AND CLICK THE MAGIC 8 BALL!</p>
-<p><a href="/balls">Back to Magic 8 Ball list</a></p>
+<p>ASK A QUESTION AND CLICK BUTTON!</p>
+<div class="ball">
+  <a href="/balls/<%= @ball.id %>"><input type="submit" value="ANSWER ME!" ></a>
+</div>
+<div class="result"></div>
+<img src="/images/8ball.png">
+<p><a href="/balls">Back to Magic Ball list</a></p>

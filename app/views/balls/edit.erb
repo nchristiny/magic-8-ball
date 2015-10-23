@@ -1,4 +1,4 @@
-<h1>Magic 8 Ball Simulator</h1>
+<h1>Magic Ball Simulator</h1>
 <h2>Edit Ball</h2>
 <% if @errors %>
   <span>Something went wrong:</span>
@@ -13,7 +13,7 @@
   <fieldset>
     <legend>Edit Ball Form</legend>
     <label for="name">Name:</label>
-    <input type="text" name="ball[name]" value=<%= @ball.try(:name) %>>
+    <input type="text" name="ball[name]" value="<%= @ball.try(:name) %>">
     <br />
     <input type="submit" value="Edit">
   </fieldset>

@@ -1,8 +1,8 @@
-<h1>Magic 8 Ball Simulator</h1>
-<h2>Available 8 Balls:</h2>
+<h1>Magic Ball Simulator</h1>
+<h2>Available Magic Balls:</h2>
 <ul>
   <% @balls.each do |ball| %>
   <li><a href="balls/<%= ball.id %>"><%= ball.name %></a></li>
   <% end %>
 </ul>
-<a href="balls/new">Create a new Magic 8 Ball</a>
+<a href="balls/new">Create a new Magic Ball</a>
